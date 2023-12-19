@@ -6,140 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/titulo"
-        android:layout_width="367dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="28dp"
-        android:text="Registrar cuenta "
-        android:textAlignment="center"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/nombre"
-        android:layout_width="110dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
-        android:text="Nombre"
-        android:gravity="center"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo" />
-
-    <EditText
-        android:id="@+id/txtNombre"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="24dp"
-        android:hint="intrdouce tu nombre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo" />
-
-    <TextView
-        android:id="@+id/apellidos"
-        android:layout_width="110dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="Apellidos"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre" />
-
-    <EditText
-        android:id="@+id/txtApellidos"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:hint="intrdouce tus apellidos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
-
-    <TextView
-        android:id="@+id/telefono"
-        android:layout_width="110dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="Telefono"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/apellidos" />
-
-    <EditText
-        android:id="@+id/txtTelefono"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:hint="intrdouce tu telefono"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtApellidos" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="110dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="Email"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telefono" />
-
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:hint="intrdouce tu email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTelefono" />
-
-    <TextView
-        android:id="@+id/contraseña"
-        android:layout_width="110dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="Contraseña"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
-
-    <EditText
-        android:id="@+id/txtContraseña"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:hint="intrdouce tu contraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <Button
         android:id="@+id/btnRegistrarse"
-        android:layout_width="166dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="270dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="244dp"
         android:text="Registrarse"
-        android:textSize="20dp"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtContraseña" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnInicio"
+        android:layout_width="270dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="44dp"
+        android:text="Inicio Sesion"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegistrarse" />
 </androidx.constraintlayout.widget.ConstraintLayout>

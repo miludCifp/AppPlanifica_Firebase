@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "684708784804",
+    "project_id": "appplanifica-8139c",
+    "storage_bucket": "appplanifica-8139c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684708784804:android:53ddb419c2244f23631431",
+        "android_client_info": {
+          "package_name": "com.cifpceuta.appplanifica"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_MGiGmygTKkgJBd6tSiacW0FZCvMAeKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

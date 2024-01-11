@@ -2,9 +2,11 @@ package com.cifpceuta.appplanifica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,10 +20,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Localizamos los elementos de la interfaz.
+        btnRegistrar = (Button) findViewById(R.id.btnRegistro);
         btnInicio = (Button) findViewById(R.id.btnInicio);
-        btnRegistrar = (Button) findViewById(R.id.btnRegistrarse);
-
-        //Hacemos la conexion con la BD mediante la clase manejadora.
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, RegistrarCuenta.class);
+                startActivity(i);
+            }
+        });
+        btnInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, InicioSesion.class);
+                startActivity(i);
+            }
+        });
 
 
     }

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/titulo"
@@ -24,10 +23,10 @@
         android:id="@+id/nombre"
         android:layout_width="110dp"
         android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
-        android:text="Nombre"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
         android:gravity="center"
+        android:text="Nombre"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo" />
@@ -36,8 +35,8 @@
         android:id="@+id/txtNombre"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
         android:hint="intrdouce tu nombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo" />
@@ -65,81 +64,130 @@
         app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 
     <TextView
-        android:id="@+id/telefono"
+        android:id="@+id/email"
         android:layout_width="110dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:gravity="center"
-        android:text="Telefono"
+        android:text="Email"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/apellidos" />
 
     <EditText
-        android:id="@+id/txtTelefono"
+        android:id="@+id/txtEmail"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:hint="intrdouce tu telefono"
+        android:hint="intrdouce tu email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtApellidos" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/grupo"
         android:layout_width="110dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="Email"
+        android:text="Grupo"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telefono" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
-    <EditText
-        android:id="@+id/txtEmail"
+    <Spinner
+        android:id="@+id/spinnerGrupo"
         android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:hint="intrdouce tu email"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:hint="elige tu grupo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTelefono" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+    <TextView
+        android:id="@+id/turno"
+        android:layout_width="110dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Turno"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grupo" />
+
+
+    <RadioGroup
+        android:id="@+id/gpOpciones"
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerGrupo"
+        tools:layout_editor_absoluteX="161dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/opcionMañana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mañana" />
+
+        <RadioButton
+            android:id="@+id/opcionTarde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tarde" />
+
+    </RadioGroup>
 
     <TextView
         android:id="@+id/contraseña"
         android:layout_width="110dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="Contraseña"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/turno" />
 
     <EditText
         android:id="@+id/txtContraseña"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="24dp"
         android:hint="intrdouce tu contraseña"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/gpOpciones" />
 
     <Button
         android:id="@+id/btnRegistrarse"
         android:layout_width="166dp"
         android:layout_height="61dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:text="Registrarse"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtContraseña" />
+
+    <Button
+        android:id="@+id/btnVolverRegistro"
+        android:layout_width="166dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="16dp"
+        android:text="Volver"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegistrarse" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

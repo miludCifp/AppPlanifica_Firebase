@@ -21,11 +21,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class InicioSesion extends AppCompatActivity {
     private Button btnIniciarSesion, btnVolverInicio;
     private EditText txtEmail, txtContraseña;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore bd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +53,9 @@ public class InicioSesion extends AppCompatActivity {
         btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String emailUser = txtEmail.getText().toString();
+                String passUser = txtContraseña.getText().toString();
+                iniciarSesion(emailUser, passUser);
             }
         });
 
@@ -79,7 +85,7 @@ public class InicioSesion extends AppCompatActivity {
     }
     private void pasarActivity(){
         // si el usuario se ha creado volvemos al Activity Principal para que se pueda logear
-        Intent intent = new Intent(InicioSesion.this, MainActivity.class);
+        Intent intent = new Intent(InicioSesion.this, WelcomeActivity.class);
         startActivity(intent);
     }
 }

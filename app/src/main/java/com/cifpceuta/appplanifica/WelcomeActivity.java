@@ -74,6 +74,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
+                        //Creo un objeto Alumno para guardar sus datos despues de logearse.
                         Alumno u = new Alumno();
                         u.setNombre(document.getData().get("Nombre").toString());
                         u.setApellidos(document.getData().get("Apellidos").toString());
@@ -83,7 +84,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
 
                         Toast.makeText(WelcomeActivity.this,"Nombre: "+u.getNombre()+" Tu email es : "+u.getEmail(),Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(WelcomeActivity.this,"No se ha podido encontrar al usuario "+FirebaseAuth.getInstance().getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WelcomeActivity.this,"No existe el usuario en la base de datos "+FirebaseAuth.getInstance().getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(WelcomeActivity.this,"Ha habido un error en la conexion "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();

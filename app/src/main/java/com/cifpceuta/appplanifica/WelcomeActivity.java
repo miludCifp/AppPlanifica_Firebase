@@ -42,7 +42,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        //Recogo los datos del usuario logueado
+        //Recogo los datos del usuario logueado.
         bd = FirebaseFirestore.getInstance();
         recogerDatos();
 

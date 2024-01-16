@@ -74,7 +74,7 @@ public class InicioSesion extends AppCompatActivity {
                                 pasarActivity();
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Log.w(TAG, "Ha fallado la autenticación.", task.getException());
+                                Log.w(TAG, "Algun dato esta mal.", task.getException());
                                 Toast.makeText(InicioSesion.this, "Ha fallado la autenticación.",
                                         Toast.LENGTH_SHORT).show();
                                 //updateUI(null);

@@ -26,6 +26,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
     private NavigationView navigationView;
     private Toolbar toolbar;
     private FirebaseFirestore bd;
+    private Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,9 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         //Recogo los datos del usuario logueado.
         bd = FirebaseFirestore.getInstance();
         recogerDatos();
+        //Para imprimir en el fragmento el correo del usuario logeado.
+        BlankFragment fragDefecto = BlankFragment.newInstance(alumno.getEmail());
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();
 
     }
     @Override
@@ -52,7 +56,8 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         int itemId = item.getItemId();
 
         if (itemId == R.id.nav_account) {
-            //getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, new PerfilEstudiante_Fragment()).commit();
+
+
         } else if (itemId == R.id.plan_practica) {
 
         } else if (itemId == R.id.plan_exam) {

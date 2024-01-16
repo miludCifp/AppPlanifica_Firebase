@@ -84,7 +84,7 @@ public class InicioSesion extends AppCompatActivity {
             // [END sign_in_with_email]
     }
     private void pasarActivity(){
-        // si el usuario se ha creado volvemos al Activity Principal para que se pueda logear
+        // si el usuario se ha creado volvemos al Activity Principal para que se pueda logear.
         Intent intent = new Intent(InicioSesion.this, WelcomeActivity.class);
         startActivity(intent);
     }

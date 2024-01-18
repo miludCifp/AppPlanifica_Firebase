@@ -26,7 +26,6 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
     private NavigationView navigationView;
     private Toolbar toolbar;
     private FirebaseFirestore bd;
-    private Alumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +45,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         //Recogo los datos del usuario logueado.
         bd = FirebaseFirestore.getInstance();
         recogerDatos();
-        //Para imprimir en el fragmento el correo del usuario logeado.
-        BlankFragment fragDefecto = BlankFragment.newInstance(alumno.getEmail());
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();
+
 
     }
     @Override
@@ -56,7 +53,6 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         int itemId = item.getItemId();
 
         if (itemId == R.id.nav_account) {
-
 
         } else if (itemId == R.id.plan_practica) {
 
@@ -80,14 +76,19 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         //Creo un objeto Alumno para guardar sus datos despues de logearse.
-                        Alumno u = new Alumno();
-                        u.setNombre(document.getData().get("Nombre").toString());
-                        u.setApellidos(document.getData().get("Apellidos").toString());
-                        u.setEmail(document.getData().get("Correo").toString());
-                        u.setGrupo(document.getData().get("Grupo").toString());
-                        u.setTurno(document.getData().get("Turno").toString());
+                        Alumno user = new Alumno();
+                        user.setNombre(document.getData().get("Nombre").toString());
+                        user.setApellidos(document.getData().get("Apellidos").toString());
+                        user.setEmail(document.getData().get("Correo").toString());
+                        user.setGrupo(document.getData().get("Grupo").toString());
+                        user.setTurno(document.getData().get("Turno").toString());
 
-                        Toast.makeText(WelcomeActivity.this,"Nombre: "+u.getNombre()+" Tu email es : "+u.getEmail(),Toast.LENGTH_LONG).show();
+                        //Para imprimir en el fragmento el correo del usuario logeado.
+                        BlankFragment fragDefecto = BlankFragment.newInstance(user.getEmail());
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();
+                        //if (savedInstanceState == null) {getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();}
+
+                        Toast.makeText(WelcomeActivity.this,"Nombre: "+user.getNombre()+" Tu email es : "+user.getEmail(),Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(WelcomeActivity.this,"No existe el usuario en la base de datos "+FirebaseAuth.getInstance().getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();
                     }

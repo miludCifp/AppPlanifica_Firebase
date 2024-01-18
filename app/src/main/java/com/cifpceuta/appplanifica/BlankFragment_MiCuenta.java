@@ -11,19 +11,25 @@ import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BlankFragment#newInstance} factory method to
+ * Use the {@link BlankFragment_MiCuenta#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BlankFragment extends Fragment {
+public class BlankFragment_MiCuenta extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_NOMBRE = "Nombre";
     private static final String ARG_CORREO = "Correo";
+    private static final String ARG_TURNO = "Turno";
+    private static final String ARG_GRUPO = "Grupo";
 
     // TODO: Rename and change types of parameters
+    private String mNombre;
     private String mCorreo;
+    private String mTurno;
+    private String mGrupo;
 
-    public BlankFragment() {
+    public BlankFragment_MiCuenta() {
         // Required empty public constructor
     }
 
@@ -31,15 +37,21 @@ public class BlankFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param correo Correo del usuario logueado.
-     * @return A new instance of fragment BlankFragment.
+     * @param nombre nombre del usuario logueado.
+     * @param correo correo del usuario logueado.
+     * @param turno turno del usuario logueado.
+     * @param grupo grupo del usuario logueado.
+     * @return A new instance of fragment BlankFragment_MiCuenta.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance(String correo) {
+    public static BlankFragment newInstance(String nombre, String correo, String turno, String grupo) {
         BlankFragment fragment = new BlankFragment();
         Bundle args = new Bundle();
         //Recogemos los datos del usuario
+        args.putString(ARG_NOMBRE, nombre);
         args.putString(ARG_CORREO, correo);
+        args.putString(ARG_TURNO, turno);
+        args.putString(ARG_GRUPO, grupo);
         fragment.setArguments(args);
         return fragment;
     }
@@ -48,18 +60,27 @@ public class BlankFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            mNombre = getArguments().getString(ARG_NOMBRE);
             mCorreo = getArguments().getString(ARG_CORREO);
+            mTurno = getArguments().getString(ARG_TURNO);
+            mGrupo = getArguments().getString(ARG_GRUPO);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         TextView tvUsuario;
-        View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_mi_cuenta, container, false);
 
         // Vincular el correo electrónico al TextView en el layout
-        tvUsuario = rootView.findViewById(R.id.tvUserLogueado);
+        tvUsuario = rootView.findViewById(R.id.tvNombreUser);
+        tvUsuario.setText(mNombre);
+        tvUsuario = rootView.findViewById(R.id.tvEmailUser);
         tvUsuario.setText(mCorreo);
+        tvUsuario = rootView.findViewById(R.id.tvTurnoUser);
+        tvUsuario.setText(mTurno);
+        tvUsuario = rootView.findViewById(R.id.tvGrupoUser);
+        tvUsuario.setText(mGrupo);
 
         // Inflate the layout for this fragment
         return rootView;

@@ -26,6 +26,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
     private NavigationView navigationView;
     private Toolbar toolbar;
     private FirebaseFirestore bd;
+    private Alumno user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,8 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         int itemId = item.getItemId();
 
         if (itemId == R.id.nav_account) {
-
+            BlankFragment_MiCuenta fragMiCuenta = BlankFragment_MiCuenta.newInstance(user.getNombre(), user.getEmail(), user.getTurno(), user.getGrupo());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragMiCuenta).commit();
         } else if (itemId == R.id.plan_practica) {
 
         } else if (itemId == R.id.plan_exam) {
@@ -76,7 +78,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         //Creo un objeto Alumno para guardar sus datos despues de logearse.
-                        Alumno user = new Alumno();
+                        user = new Alumno();
                         user.setNombre(document.getData().get("Nombre").toString());
                         user.setApellidos(document.getData().get("Apellidos").toString());
                         user.setEmail(document.getData().get("Correo").toString());

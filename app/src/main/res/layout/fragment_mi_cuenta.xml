@@ -11,31 +11,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="100dp"
-        android:text="Nombre" />
+        android:layout_marginBottom="100dp" />
 
     <TextView
         android:id="@+id/tvEmailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="70dp"
-        android:text="Correo " />
+        android:layout_marginBottom="70dp" />
 
     <TextView
         android:id="@+id/tvTurnoUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
-        android:text="Turno " />
+        android:layout_marginBottom="40dp" />
 
     <TextView
         android:id="@+id/tvGrupoUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:text="Grupo " />
+        android:layout_marginBottom="10dp" />
 
 </FrameLayout>

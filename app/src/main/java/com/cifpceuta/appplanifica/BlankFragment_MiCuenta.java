@@ -39,21 +39,21 @@ public class BlankFragment_MiCuenta extends Fragment {
      *
      * @param nombre nombre del usuario logueado.
      * @param correo correo del usuario logueado.
-     * @param turno turno del usuario logueado.
-     * @param grupo grupo del usuario logueado.
+     * @param turno  turno del usuario logueado.
+     * @param grupo  grupo del usuario logueado.
      * @return A new instance of fragment BlankFragment_MiCuenta.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance(String nombre, String correo, String turno, String grupo) {
-        BlankFragment fragment = new BlankFragment();
+    public static BlankFragment_MiCuenta newInstance(String nombre, String correo, String turno, String grupo) {
+        BlankFragment_MiCuenta fragmentCuenta = new BlankFragment_MiCuenta();
         Bundle args = new Bundle();
         //Recogemos los datos del usuario
         args.putString(ARG_NOMBRE, nombre);
         args.putString(ARG_CORREO, correo);
         args.putString(ARG_TURNO, turno);
         args.putString(ARG_GRUPO, grupo);
-        fragment.setArguments(args);
-        return fragment;
+        fragmentCuenta.setArguments(args);
+        return fragmentCuenta;
     }
 
     @Override
@@ -74,13 +74,13 @@ public class BlankFragment_MiCuenta extends Fragment {
 
         // Vincular el correo electrónico al TextView en el layout
         tvUsuario = rootView.findViewById(R.id.tvNombreUser);
-        tvUsuario.setText(mNombre);
+        tvUsuario.setText("Nombre : "+mNombre);
         tvUsuario = rootView.findViewById(R.id.tvEmailUser);
-        tvUsuario.setText(mCorreo);
+        tvUsuario.setText("Correo : "+mCorreo);
         tvUsuario = rootView.findViewById(R.id.tvTurnoUser);
-        tvUsuario.setText(mTurno);
+        tvUsuario.setText("Turno : "+mTurno);
         tvUsuario = rootView.findViewById(R.id.tvGrupoUser);
-        tvUsuario.setText(mGrupo);
+        tvUsuario.setText("Grupo : "+mGrupo);
 
         // Inflate the layout for this fragment
         return rootView;

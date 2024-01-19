@@ -35,6 +35,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         //Localizamos los elementos de la interfaz grafica.
         toolbar = (findViewById(R.id.toolbar));
         setSupportActionBar(findViewById(R.id.toolbar));
+
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
@@ -55,7 +56,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
 
         if (itemId == R.id.nav_account) {
             BlankFragment_MiCuenta fragMiCuenta = BlankFragment_MiCuenta.newInstance(user.getNombre(), user.getEmail(), user.getTurno(), user.getGrupo());
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragMiCuenta).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, new BlankFragment_MiCuenta()).commit();
         } else if (itemId == R.id.plan_practica) {
 
         } else if (itemId == R.id.plan_exam) {
@@ -86,8 +87,8 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                         user.setTurno(document.getData().get("Turno").toString());
 
                         //Para imprimir en el fragmento el correo del usuario logeado.
-                        BlankFragment fragDefecto = BlankFragment.newInstance(user.getEmail());
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();
+                        //BlankFragment fragDefecto = BlankFragment.newInstance(user.getEmail());
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();
                         //if (savedInstanceState == null) {getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();}
 
                         Toast.makeText(WelcomeActivity.this,"Nombre: "+user.getNombre()+" Tu email es : "+user.getEmail(),Toast.LENGTH_LONG).show();

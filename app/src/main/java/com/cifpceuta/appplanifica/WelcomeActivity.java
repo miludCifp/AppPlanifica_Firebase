@@ -55,10 +55,11 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         int itemId = item.getItemId();
 
         if (itemId == R.id.nav_account) {
-            BlankFragment_MiCuenta fragMiCuenta = BlankFragment_MiCuenta.newInstance(user.getNombre(), user.getEmail(), user.getTurno(), user.getGrupo());
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, new BlankFragment_MiCuenta()).commit();
+            Fragment_MiCuenta fragMiCuenta = Fragment_MiCuenta.newInstance(user.getNombre(), user.getEmail(), user.getTurno(), user.getGrupo());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragMiCuenta).commit();
         } else if (itemId == R.id.plan_practica) {
-
+            Fragment_PlanificarPractica fragPlanPractica = new Fragment_PlanificarPractica();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragPlanPractica).commit();
         } else if (itemId == R.id.plan_exam) {
 
         } else if (itemId == R.id.nav_settings) {
@@ -86,10 +87,9 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                         user.setGrupo(document.getData().get("Grupo").toString());
                         user.setTurno(document.getData().get("Turno").toString());
 
-                        //Para imprimir en el fragmento el correo del usuario logeado.
-                        //BlankFragment fragDefecto = BlankFragment.newInstance(user.getEmail());
-                        //getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();
-                        //if (savedInstanceState == null) {getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();}
+                        //creamos el fragmento por defecto y cargamos el correo logueado.
+                        Fragment_PorDefecto fragDefecto = Fragment_PorDefecto.newInstance(user.getEmail());
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();
 
                         Toast.makeText(WelcomeActivity.this,"Nombre: "+user.getNombre()+" Tu email es : "+user.getEmail(),Toast.LENGTH_LONG).show();
                     } else {

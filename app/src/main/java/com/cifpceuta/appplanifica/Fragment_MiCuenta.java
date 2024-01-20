@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BlankFragment_MiCuenta#newInstance} factory method to
+ * Use the {@link Fragment_MiCuenta#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BlankFragment_MiCuenta extends Fragment {
+public class Fragment_MiCuenta extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +29,7 @@ public class BlankFragment_MiCuenta extends Fragment {
     private String mTurno;
     private String mGrupo;
 
-    public BlankFragment_MiCuenta() {
+    public Fragment_MiCuenta() {
         // Required empty public constructor
     }
 
@@ -44,8 +44,8 @@ public class BlankFragment_MiCuenta extends Fragment {
      * @return A new instance of fragment BlankFragment_MiCuenta.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment_MiCuenta newInstance(String nombre, String correo, String turno, String grupo) {
-        BlankFragment_MiCuenta fragmentCuenta = new BlankFragment_MiCuenta();
+    public static Fragment_MiCuenta newInstance(String nombre, String correo, String turno, String grupo) {
+        Fragment_MiCuenta fragmentCuenta = new Fragment_MiCuenta();
         Bundle args = new Bundle();
         //Recogemos los datos del usuario
         args.putString(ARG_NOMBRE, nombre);

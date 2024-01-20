@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BlankFragment#newInstance} factory method to
+ * Use the {@link Fragment_PorDefecto#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BlankFragment extends Fragment {
+public class Fragment_PorDefecto extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +23,7 @@ public class BlankFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mCorreo;
 
-    public BlankFragment() {
+    public Fragment_PorDefecto() {
         // Required empty public constructor
     }
 
@@ -35,8 +35,8 @@ public class BlankFragment extends Fragment {
      * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance(String correo) {
-        BlankFragment fragment = new BlankFragment();
+    public static Fragment_PorDefecto newInstance(String correo) {
+        Fragment_PorDefecto fragment = new Fragment_PorDefecto();
         Bundle args = new Bundle();
         //Recogemos los datos del usuario
         args.putString(ARG_CORREO, correo);

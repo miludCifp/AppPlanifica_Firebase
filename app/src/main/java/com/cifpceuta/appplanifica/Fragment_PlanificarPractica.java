@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -136,6 +137,7 @@ public class Fragment_PlanificarPractica extends Fragment {
         listaGrupos.add("2ºDAW");
         listaGrupos.add("2ºASIR");
         listaGrupos.add("2ºSMT");
+
         ArrayAdapter<String> spGruposAdp = new ArrayAdapter<>(miView.getContext(), android.R.layout.simple_spinner_item, listaGrupos);
         spGruposAdp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         grupos.setAdapter(spGruposAdp);
@@ -154,6 +156,7 @@ public class Fragment_PlanificarPractica extends Fragment {
     }
     private void guardarDatos(){
         // Create a new user with a first and last name
+        db = FirebaseFirestore.getInstance();
         String idUsuario = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         Map<String, Object> practica = new HashMap<>();
@@ -165,11 +168,11 @@ public class Fragment_PlanificarPractica extends Fragment {
         practica.put("Modulo", modulos.getSelectedItem().toString());
 
         // Add a new document with a generated ID
-        db.collection("practicas").document(idUsuario)
-                .set(practica)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("practicas")
+                .add(practica)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
-                    public void onSuccess(Void v) {
+                    public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(getActivity(),"Tarea creada y guardada en la bd correctamente",Toast.LENGTH_LONG).show();
                     }
                 })

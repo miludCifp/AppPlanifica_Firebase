@@ -108,7 +108,7 @@ public class Fragment_Tareas extends Fragment {
                                 tareas.add(unaTarea);
                                 Toast.makeText(getActivity(), "La tarea consultada es : "+unaTarea.getTituloTarea() , Toast.LENGTH_SHORT).show();
                             }
-                            ItemAdapter miItemAdapter = new ItemAdapter();
+                            ItemAdapter miItemAdapter = new ItemAdapter(tareas);
                             miRecyclerView = (RecyclerView) miView.findViewById(R.id.miRecyclerView);
                             miRecyclerView.setAdapter(miItemAdapter);
                             miRecyclerView.setLayoutManager(new LinearLayoutManager(miView.getContext()));

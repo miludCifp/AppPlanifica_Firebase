@@ -12,6 +12,10 @@
         android:title="Planificar práctica" />
 
     <item
+        android:id="@+id/tareas"
+        android:title="Ver tareas" />
+
+    <item
         android:id="@+id/plan_exam"
         android:title="Planificar examen" />
 

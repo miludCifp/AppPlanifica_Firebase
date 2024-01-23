@@ -20,6 +20,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 public class WelcomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -27,6 +29,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
     private Toolbar toolbar;
     private FirebaseFirestore bd;
     private Alumno user;
+    private ArrayList<Tarea> tareas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,10 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         } else if (itemId == R.id.plan_practica) {
             Fragment_PlanificarPractica fragPlanPractica = new Fragment_PlanificarPractica();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragPlanPractica).commit();
+        } else if (itemId == R.id.tareas) {
+            // Poner fragmento de las tareas
+            Fragment_Tareas fragTareas = new Fragment_Tareas(tareas);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragTareas).commit();
         } else if (itemId == R.id.plan_exam) {
 
         } else if (itemId == R.id.nav_settings) {

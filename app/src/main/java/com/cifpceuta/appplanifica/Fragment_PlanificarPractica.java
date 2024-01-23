@@ -124,6 +124,12 @@ public class Fragment_PlanificarPractica extends Fragment {
             @Override
             public void onClick(View v) {
                 guardarDatos();
+                //Reseteo los campos de la interfaz
+                etTituloPractica.setText("");
+                etDescPractica.setText("");
+                etFechaInicio.setText("");
+                etFechaFin.setText("");
+
             }
         });
 

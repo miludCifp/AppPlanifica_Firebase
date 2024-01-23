@@ -2,6 +2,7 @@ package com.cifpceuta.appplanifica;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,9 +38,14 @@ public class Fragment_Tareas extends Fragment {
     private String mParam2;
 
     private RecyclerView miRecyclerView;
+    private ArrayList<Tarea> tareas;
+    private FirebaseFirestore db;
 
-    public Fragment_Tareas() {
+    public Fragment_Tareas(){}
+
+    public Fragment_Tareas(ArrayList<Tarea> tareas) {
         // Required empty public constructor
+        this.tareas = tareas;
     }
 
     /**
@@ -63,13 +79,43 @@ public class Fragment_Tareas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View miView =  inflater.inflate(R.layout.fragment__tareas, container, false);
-
-        ItemAdapter miItemAdapter = new ItemAdapter();
-
-        miRecyclerView = (RecyclerView) miView.findViewById(R.id.miRecyclerView);
-        miRecyclerView.setAdapter(miItemAdapter);
-        miRecyclerView.setLayoutManager(new LinearLayoutManager(miView.getContext()));
-
+        // utilizo el metodo recogerTareas()
+        recogerTareas(miView);
         return miView;
+    }
+    private void recogerTareas(View miView) {
+        String idProfesor = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db = FirebaseFirestore.getInstance();
+
+        db.collection("practicas")
+                .whereEqualTo("ProfesorID", idProfesor)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            //Inicializo el array que guardara las tareas asignadas.
+                            tareas = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Tarea unaTarea = new Tarea();
+                                unaTarea.setIdUser(document.getString("ProfesorID"));
+                                unaTarea.setCurso(document.getString("Curso"));
+                                unaTarea.setModulo(document.getString("Modulo"));
+                                unaTarea.setDescripcionTarea(document.getString("Descripción"));
+                                unaTarea.setFechaInicio(document.getString("FechaInicio"));
+                                unaTarea.setFechaFin(document.getString("FechaFin"));
+                                tareas.add(unaTarea);
+                                Toast.makeText(getActivity(), "La tarea consultada es : "+unaTarea.getTituloTarea() , Toast.LENGTH_SHORT).show();
+                            }
+                            ItemAdapter miItemAdapter = new ItemAdapter();
+                            miRecyclerView = (RecyclerView) miView.findViewById(R.id.miRecyclerView);
+                            miRecyclerView.setAdapter(miItemAdapter);
+                            miRecyclerView.setLayoutManager(new LinearLayoutManager(miView.getContext()));
+                        } else {
+                            Toast.makeText(getContext(), "Error, no se pudo leer las tareas "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }

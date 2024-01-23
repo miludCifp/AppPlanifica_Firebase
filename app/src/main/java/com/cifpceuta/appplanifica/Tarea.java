@@ -1,6 +1,8 @@
 package com.cifpceuta.appplanifica;
 
 public class Tarea {
+    private String idUser;
+    private String tituloTarea;
     private String curso;
     private String modulo;
     private String descripcionTarea;
@@ -9,12 +11,30 @@ public class Tarea {
 
     public Tarea() {}
 
-    public Tarea(String curso, String modulo, String descripcionTarea, String fechaInicio, String fechaFin) {
+    public Tarea(String idUser, String tituloTarea, String curso, String modulo, String descripcionTarea, String fechaInicio, String fechaFin) {
+        this.idUser = idUser;
+        this.tituloTarea = tituloTarea;
         this.curso = curso;
         this.modulo = modulo;
         this.descripcionTarea = descripcionTarea;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getTituloTarea() {
+        return tituloTarea;
+    }
+
+    public void setTituloTarea(String tituloTarea) {
+        this.tituloTarea = tituloTarea;
     }
 
     public String getCurso() {

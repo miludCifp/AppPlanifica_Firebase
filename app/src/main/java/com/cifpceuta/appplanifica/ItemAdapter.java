@@ -72,6 +72,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         void bindData(Tarea tarea) {
             fechInicio = tarea.getFechaInicio();
             fechFin = tarea.getFechaFin();
+
             fechaInicio.setText(fechInicio);
             fechaFin.setText(fechFin);
             descripcion.setText(tarea.getDescripcionTarea());

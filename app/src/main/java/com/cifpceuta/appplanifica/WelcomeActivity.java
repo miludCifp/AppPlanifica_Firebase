@@ -98,7 +98,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                         Fragment_PorDefecto fragDefecto = Fragment_PorDefecto.newInstance(user.getEmail());
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();
 
-                        Toast.makeText(WelcomeActivity.this,"Nombre: "+user.getNombre()+" Tu email es : "+user.getEmail(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(WelcomeActivity.this,"Nombre: "+user.getNombre()+"\n Tu email es : "+user.getEmail(),Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(WelcomeActivity.this,"No existe el usuario en la base de datos "+FirebaseAuth.getInstance().getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();
                     }

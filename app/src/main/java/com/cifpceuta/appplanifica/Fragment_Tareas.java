@@ -106,12 +106,12 @@ public class Fragment_Tareas extends Fragment {
                                 unaTarea.setFechaInicio(document.getString("FechaInicio"));
                                 unaTarea.setFechaFin(document.getString("FechaFin"));
                                 tareas.add(unaTarea);
-                                Toast.makeText(getActivity(), "La tarea consultada es : "+unaTarea.getTituloTarea() , Toast.LENGTH_SHORT).show();
                             }
                             ItemAdapter miItemAdapter = new ItemAdapter(tareas);
                             miRecyclerView = (RecyclerView) miView.findViewById(R.id.miRecyclerView);
                             miRecyclerView.setAdapter(miItemAdapter);
                             miRecyclerView.setLayoutManager(new LinearLayoutManager(miView.getContext()));
+                            Toast.makeText(getActivity(), "Tareas consultadas correctamente", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getContext(), "Error, no se pudo leer las tareas "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }

@@ -37,10 +37,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         holder.bindData(listItem.get(position));
         holder.miCardView.setCardBackgroundColor(Color.WHITE);
 
-        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        /*DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fInicio = LocalDate.parse(fechInicio,formatoFecha);
         LocalDate fFin = LocalDate.parse(fechFin,formatoFecha);
-        long diasPlazo = ChronoUnit.DAYS.between(fInicio, fFin);
+        long diasPlazo = ChronoUnit.DAYS.between(fInicio, fFin);*/
+
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fFin = LocalDate.parse(fechFin,formatoFecha);
+        long diasPlazo = ChronoUnit.DAYS.between(LocalDate.now(), fFin);
 
         if (diasPlazo <= 3 && diasPlazo >= 0) {
             holder.miCardView.setCardBackgroundColor(ContextCompat.getColor(holder.miCardView.getContext(), R.color.verdeClaro));
@@ -65,7 +69,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             miCardView = itemView.findViewById(R.id.miCardView);
             curso = itemView.findViewById(R.id.itemCurso);
             modulo = itemView.findViewById(R.id.itemModulo);
-            descripcion = itemView.findViewById(R.id.itemDescripcion);
+            descripcion = itemView.findViewById(R.id.itemTitulo);
             fechaInicio = itemView.findViewById(R.id.itemFechaInicio);
             fechaFin = itemView.findViewById(R.id.itemFechaFin);
         }

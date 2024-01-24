@@ -100,6 +100,7 @@ public class Fragment_Tareas extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Tarea unaTarea = new Tarea();
                                 unaTarea.setIdUser(document.getString("ProfesorID"));
+                                unaTarea.setTituloTarea(document.getString("Titulo"));
                                 unaTarea.setCurso(document.getString("Curso"));
                                 unaTarea.setModulo(document.getString("Modulo"));
                                 unaTarea.setDescripcionTarea(document.getString("Descripción"));

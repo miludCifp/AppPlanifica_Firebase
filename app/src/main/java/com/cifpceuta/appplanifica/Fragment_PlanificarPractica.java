@@ -170,6 +170,7 @@ public class Fragment_PlanificarPractica extends Fragment {
         practica.put("Titulo", etTituloPractica.getText().toString());
         practica.put("FechaInicio", etFechaInicio.getText().toString());
         practica.put("FechaFin", etFechaFin.getText().toString());
+        practica.put("Descripcion", etDescPractica.getText().toString());
         practica.put("Grupo", grupos.getSelectedItem().toString());
         practica.put("Modulo", modulos.getSelectedItem().toString());
 

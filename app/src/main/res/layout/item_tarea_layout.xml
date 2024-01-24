@@ -33,7 +33,7 @@ app:contentPadding="10dp">
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:layout_weight="1"
-            android:text="Item 1"
+            android:text="Item 2"
             android:textSize="28dp">
         </TextView>
     </LinearLayout>
@@ -49,7 +49,7 @@ app:contentPadding="10dp">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Item 1"
+            android:text="Item 3"
             android:textSize="28dp">
         </TextView>
     </LinearLayout>
@@ -64,7 +64,7 @@ app:contentPadding="10dp">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Item 1"
+            android:text="Item 4"
             android:textColor="@color/white"
             android:textSize="28dp">
         </TextView>
@@ -76,7 +76,7 @@ app:contentPadding="10dp">
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:text="Item 1"
+            android:text="Item 5"
             android:textSize="28dp">
         </TextView>
     </LinearLayout>

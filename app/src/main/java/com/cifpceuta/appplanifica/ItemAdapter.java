@@ -62,14 +62,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder{
         CardView miCardView;
-        TextView curso, modulo, fechaInicio, fechaFin, descripcion;
+        TextView curso, modulo, fechaInicio, fechaFin, titulo;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             miCardView = itemView.findViewById(R.id.miCardView);
             curso = itemView.findViewById(R.id.itemCurso);
             modulo = itemView.findViewById(R.id.itemModulo);
-            descripcion = itemView.findViewById(R.id.itemTitulo);
+            titulo = itemView.findViewById(R.id.itemTitulo);
             fechaInicio = itemView.findViewById(R.id.itemFechaInicio);
             fechaFin = itemView.findViewById(R.id.itemFechaFin);
         }
@@ -79,7 +79,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             fechaInicio.setText(fechInicio);
             fechaFin.setText(fechFin);
-            descripcion.setText(tarea.getDescripcionTarea());
+            titulo.setText(tarea.getTituloTarea());
             curso.setText(tarea.getCurso());
             modulo.setText(tarea.getModulo());
         }

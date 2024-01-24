@@ -21,6 +21,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class WelcomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawerLayout;
@@ -30,6 +31,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
     private FirebaseFirestore bd;
     private Alumno user;
     private ArrayList<Tarea> tareas;
+    private HashMap<String,ArrayList<String>> listaModulos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,8 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         bd = FirebaseFirestore.getInstance();
         recogerDatos();
 
+        recogerModulos();
+
 
     }
     @Override
@@ -61,11 +65,11 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
             Fragment_MiCuenta fragMiCuenta = Fragment_MiCuenta.newInstance(user.getNombre(), user.getEmail(), user.getTurno(), user.getGrupo());
             getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragMiCuenta).commit();
         } else if (itemId == R.id.plan_practica) {
-            Fragment_PlanificarPractica fragPlanPractica = new Fragment_PlanificarPractica();
+            Fragment_PlanificarPractica fragPlanPractica = new Fragment_PlanificarPractica(listaModulos);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragPlanPractica).commit();
         } else if (itemId == R.id.tareas) {
             // Poner fragmento de las tareas
-            Fragment_Tareas fragTareas = new Fragment_Tareas(tareas);
+            Fragment_Tareas fragTareas = new Fragment_Tareas(user);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragTareas).commit();
         } else if (itemId == R.id.plan_exam) {
 
@@ -104,6 +108,32 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                     }
                 } else {
                     Toast.makeText(WelcomeActivity.this,"Ha habido un error en la conexion "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    private void recogerModulos(){
+        DocumentReference docRef = bd.collection("modulos").document("Modulo");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        listaModulos = new HashMap<>();
+                        ArrayList<String> modulos1DAM = new ArrayList<>();
+                        ArrayList<String> modulos2DAM = new ArrayList<>();
+                        modulos1DAM = (ArrayList<String>) document.getData().get("1ºDAM");
+                        modulos2DAM = (ArrayList<String>) document.getData().get("2ºDAM");
+
+                        listaModulos.put("1ºDAM",modulos1DAM);
+                        listaModulos.put("2ºDAM",modulos2DAM);
+
+                    } else {
+                        Toast.makeText(WelcomeActivity.this,"Modulos no encontrados"+FirebaseAuth.getInstance().getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(WelcomeActivity.this,"Error conexion con la bd "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         });

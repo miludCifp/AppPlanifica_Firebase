@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,10 +52,13 @@ public class Fragment_PlanificarPractica extends Fragment {
     private EditText etTituloPractica, etFechaInicio, etFechaFin, etDescPractica;
     private Spinner grupos, modulos;
     private Button btnGuardar;
+    private HashMap<String,ArrayList<String>> listaModulos;
 
-    public Fragment_PlanificarPractica() {
+    public Fragment_PlanificarPractica(HashMap<String,ArrayList<String>> modulos) {
         // Required empty public constructor
+        listaModulos = modulos;
     }
+    public Fragment_PlanificarPractica(){}
 
     /**
      * Use this factory method to create a new instance of
@@ -109,7 +113,6 @@ public class Fragment_PlanificarPractica extends Fragment {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     mostrarFecha(etFechaFin);
-                    //fechaIni = dateString;
                 }
                 return false;
             }
@@ -136,17 +139,30 @@ public class Fragment_PlanificarPractica extends Fragment {
         // Rellenamos los spinners y le creamos el ArrayAdapter correspondiente.
         List<String> listaGrupos = new ArrayList<>();
         listaGrupos.add("1ºDAM");
-        listaGrupos.add("1ºDAW");
-        listaGrupos.add("1ºASIR");
-        listaGrupos.add("1ºSMT");
+        //listaGrupos.add("1ºDAW");
+        //listaGrupos.add("1ºASIR");
+        //listaGrupos.add("1ºSMT");
         listaGrupos.add("2ºDAM");
-        listaGrupos.add("2ºDAW");
-        listaGrupos.add("2ºASIR");
-        listaGrupos.add("2ºSMT");
+        //listaGrupos.add("2ºDAW");
+        //listaGrupos.add("2ºASIR");
+        //listaGrupos.add("2ºSMT");
 
         ArrayAdapter<String> spGruposAdp = new ArrayAdapter<>(miView.getContext(), android.R.layout.simple_spinner_item, listaGrupos);
         spGruposAdp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         grupos.setAdapter(spGruposAdp);
+        /*grupos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ArrayAdapter<String> turnoAdapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_item, listaModulos.get(grupos.getSelectedItem().toString()));
+                turnoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                modulos.setAdapter(turnoAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });*/
 
         List<String> listaModulos = new ArrayList<>();
         listaModulos.add("Sistemas");
@@ -156,6 +172,10 @@ public class Fragment_PlanificarPractica extends Fragment {
         ArrayAdapter<String> spModulosAdp = new ArrayAdapter<>(miView.getContext(), android.R.layout.simple_spinner_item, listaModulos);
         spModulosAdp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         modulos.setAdapter(spModulosAdp);
+
+        //ArrayAdapter<String> turnoAdapter = new ArrayAdapter<>(miView.getContext(), android.R.layout.simple_spinner_item, listaModulos.get(grupos.getSelectedItem().toString()));
+        //turnoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //modulos.setAdapter(turnoAdapter);
 
 
         return miView;

@@ -40,12 +40,13 @@ public class Fragment_Tareas extends Fragment {
     private RecyclerView miRecyclerView;
     private ArrayList<Tarea> tareas;
     private FirebaseFirestore db;
+    private Alumno user;
 
     public Fragment_Tareas(){}
 
-    public Fragment_Tareas(ArrayList<Tarea> tareas) {
+    public Fragment_Tareas(Alumno alumno) {
         // Required empty public constructor
-        this.tareas = tareas;
+        this.user = alumno;
     }
 
     /**
@@ -88,7 +89,7 @@ public class Fragment_Tareas extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         db.collection("practicas")
-                .whereEqualTo("ProfesorID", idProfesor)
+                .whereEqualTo("Curso", user.getGrupo())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -103,7 +104,7 @@ public class Fragment_Tareas extends Fragment {
                                 unaTarea.setTituloTarea(document.getString("Titulo"));
                                 unaTarea.setCurso(document.getString("Curso"));
                                 unaTarea.setModulo(document.getString("Modulo"));
-                                unaTarea.setDescripcionTarea(document.getString("Descripción"));
+                                unaTarea.setDescripcionTarea(document.getString("Descripcion"));
                                 unaTarea.setFechaInicio(document.getString("FechaInicio"));
                                 unaTarea.setFechaFin(document.getString("FechaFin"));
                                 tareas.add(unaTarea);

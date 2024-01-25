@@ -5,19 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarRegCuenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        style="@style/Base.Theme.AppPlanifica"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/titulo"
         android:layout_width="367dp"
         android:layout_height="64dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="Registrar cuenta "
         android:textAlignment="center"
         android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarRegCuenta" />
 
     <TextView
         android:id="@+id/nombre"
@@ -178,7 +188,7 @@
         android:id="@+id/btnRegistrarse"
         android:layout_width="166dp"
         android:layout_height="61dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:text="Registrarse"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -190,7 +200,7 @@
         android:id="@+id/btnVolverRegistro"
         android:layout_width="166dp"
         android:layout_height="61dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Volver"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"

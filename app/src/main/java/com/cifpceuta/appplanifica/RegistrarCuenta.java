@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
@@ -35,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RegistrarCuenta extends AppCompatActivity {
+    private Toolbar toolbarRegCuenta;
     private Button btnRegistrarse, btnVolverRegistro;
     private TextView nombre, apellidos, telefono, email;
     private EditText txtNombre, txtApellidos, txtEmail, txtContraseña;
@@ -49,6 +51,7 @@ public class RegistrarCuenta extends AppCompatActivity {
         setContentView(R.layout.activity_registrar_cuenta);
 
         //Localizamos los elementos de la interfaz.
+        toolbarRegCuenta = (Toolbar) findViewById(R.id.toolbarRegCuenta);
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         txtApellidos = (EditText) findViewById(R.id.txtApellidos);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
@@ -58,6 +61,10 @@ public class RegistrarCuenta extends AppCompatActivity {
         spGrupos = (Spinner) findViewById(R.id.spinnerGrupo);
         opMañana = (RadioButton) findViewById(R.id.opcionMañana);
         opTarde = (RadioButton) findViewById(R.id.opcionTarde);
+
+        //Configuramos el toolbar de la interfaz
+        setSupportActionBar(toolbarRegCuenta);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Relleno el spinner de los grupos de cursos
         List<String> listaGrupos = new ArrayList<>();

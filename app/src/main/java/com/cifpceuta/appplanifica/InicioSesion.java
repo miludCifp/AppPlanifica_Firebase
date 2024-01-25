@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -26,6 +27,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class InicioSesion extends AppCompatActivity {
+    private Toolbar toolbIniciarSesion;
     private Button btnIniciarSesion, btnVolverInicio;
     private EditText txtEmail, txtContraseña;
     private FirebaseAuth mAuth;
@@ -36,10 +38,15 @@ public class InicioSesion extends AppCompatActivity {
         setContentView(R.layout.activity_inicio_sesion);
 
         //Localizamos los elementos de la interfaz.
+        toolbIniciarSesion = (Toolbar) findViewById(R.id.toolbIniciarSesion);
         btnIniciarSesion = (Button) findViewById(R.id.btnIniciarSesion);
         btnVolverInicio = (Button) findViewById(R.id.btnVolverInicio);
         txtEmail = (EditText) findViewById(R.id.txtEmailInicio);
         txtContraseña = (EditText) findViewById(R.id.txtContraseñaInicio);
+
+        //Configuramos el toolbar de la interfaz
+        setSupportActionBar(toolbIniciarSesion);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Inicializamos el objeto FirebaseAuth;
         mAuth = FirebaseAuth.getInstance();

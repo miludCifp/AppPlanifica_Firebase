@@ -63,12 +63,12 @@ public class RegistrarCuenta extends AppCompatActivity {
         List<String> listaGrupos = new ArrayList<>();
         listaGrupos.add("1ºDAM");
         listaGrupos.add("1ºDAW");
-        listaGrupos.add("1ºASIR");
-        listaGrupos.add("1ºSMT");
+        //listaGrupos.add("1ºASIR");
+        //listaGrupos.add("1ºSMT");
         listaGrupos.add("2ºDAM");
         listaGrupos.add("2ºDAW");
-        listaGrupos.add("2ºASIR");
-        listaGrupos.add("2ºSMT");
+        //listaGrupos.add("2ºASIR");
+        //listaGrupos.add("2ºSMT");
 
         ArrayAdapter<String> spGruposAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaGrupos);
         spGruposAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

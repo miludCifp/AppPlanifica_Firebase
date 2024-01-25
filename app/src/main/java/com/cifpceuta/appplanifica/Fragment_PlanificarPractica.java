@@ -138,12 +138,12 @@ public class Fragment_PlanificarPractica extends Fragment {
 
         // Rellenamos los spinners y le creamos el ArrayAdapter correspondiente.
         List<String> listaGrupos = new ArrayList<>();
-        listaGrupos.add("DAM1");
-        //listaGrupos.add("1ºDAW");
+        listaGrupos.add("1ºDAM");
+        listaGrupos.add("2ºDAM");
+        listaGrupos.add("1ºDAW");
+        listaGrupos.add("2ºDAW");
         //listaGrupos.add("1ºASIR");
         //listaGrupos.add("1ºSMT");
-        listaGrupos.add("DAM2");
-        //listaGrupos.add("2ºDAW");
         //listaGrupos.add("2ºASIR");
         //listaGrupos.add("2ºSMT");
 

@@ -71,6 +71,9 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
             // Poner fragmento de las tareas
             Fragment_Tareas fragTareas = new Fragment_Tareas(user);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragTareas).commit();
+        } else if (itemId == R.id.tareas_semana) {
+            // Cargar aqui el fragmento de las tareas por semana
+
         } else if (itemId == R.id.plan_exam) {
 
         } else if (itemId == R.id.nav_settings) {
@@ -123,11 +126,17 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                         listaModulos = new HashMap<>();
                         ArrayList<String> modulos1DAM = new ArrayList<>();
                         ArrayList<String> modulos2DAM = new ArrayList<>();
-                        modulos1DAM = (ArrayList<String>) document.getData().get("DAM1");
-                        modulos2DAM = (ArrayList<String>) document.getData().get("DAM2");
+                        ArrayList<String> modulos1DAW = new ArrayList<>();
+                        ArrayList<String> modulos2DAW = new ArrayList<>();
+                        modulos1DAM = (ArrayList<String>) document.getData().get("1ºDAM");
+                        modulos2DAM = (ArrayList<String>) document.getData().get("2ºDAM");
+                        modulos1DAW = (ArrayList<String>) document.getData().get("1ºDAW");
+                        modulos2DAW = (ArrayList<String>) document.getData().get("2ºDAW");
 
-                        listaModulos.put("DAM1",modulos1DAM);
-                        listaModulos.put("DAM2",modulos2DAM);
+                        listaModulos.put("1ºDAM",modulos1DAM);
+                        listaModulos.put("2ºDAM",modulos2DAM);
+                        listaModulos.put("1ºDAW",modulos1DAW);
+                        listaModulos.put("2ºDAW",modulos2DAW);
 
                     } else {
                         Toast.makeText(WelcomeActivity.this,"Modulos no encontrados"+FirebaseAuth.getInstance().getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();

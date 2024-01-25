@@ -85,7 +85,7 @@ public class Fragment_Tareas extends Fragment {
         return miView;
     }
     private void recogerTareas(View miView) {
-        String idProfesor = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //String idProfesor = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
 
         db.collection("practicas")

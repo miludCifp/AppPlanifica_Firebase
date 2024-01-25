@@ -13,7 +13,11 @@
 
     <item
         android:id="@+id/tareas"
-        android:title="Ver tareas" />
+        android:title="Consultar tareas" />
+
+    <item
+        android:id="@+id/tareas_semana"
+        android:title="Consultar tareas por semana" />
 
     <item
         android:id="@+id/plan_exam"

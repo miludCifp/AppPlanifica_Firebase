@@ -113,7 +113,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
         });
     }
     private void recogerModulos(){
-        DocumentReference docRef = bd.collection("modulos").document("Modulo");
+        DocumentReference docRef = bd.collection("modulos").document("modulos");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -123,11 +123,11 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                         listaModulos = new HashMap<>();
                         ArrayList<String> modulos1DAM = new ArrayList<>();
                         ArrayList<String> modulos2DAM = new ArrayList<>();
-                        modulos1DAM = (ArrayList<String>) document.getData().get("1ºDAM");
-                        modulos2DAM = (ArrayList<String>) document.getData().get("2ºDAM");
+                        modulos1DAM = (ArrayList<String>) document.getData().get("DAM1");
+                        modulos2DAM = (ArrayList<String>) document.getData().get("DAM2");
 
-                        listaModulos.put("1ºDAM",modulos1DAM);
-                        listaModulos.put("2ºDAM",modulos2DAM);
+                        listaModulos.put("DAM1",modulos1DAM);
+                        listaModulos.put("DAM2",modulos2DAM);
 
                     } else {
                         Toast.makeText(WelcomeActivity.this,"Modulos no encontrados"+FirebaseAuth.getInstance().getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();

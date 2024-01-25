@@ -89,7 +89,7 @@ public class Fragment_Tareas extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         db.collection("practicas")
-                .whereEqualTo("Curso", user.getGrupo())
+                .whereEqualTo("Grupo", user.getGrupo())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -102,7 +102,7 @@ public class Fragment_Tareas extends Fragment {
                                 Tarea unaTarea = new Tarea();
                                 unaTarea.setIdUser(document.getString("ProfesorID"));
                                 unaTarea.setTituloTarea(document.getString("Titulo"));
-                                unaTarea.setCurso(document.getString("Curso"));
+                                unaTarea.setCurso(document.getString("Grupo"));
                                 unaTarea.setModulo(document.getString("Modulo"));
                                 unaTarea.setDescripcionTarea(document.getString("Descripcion"));
                                 unaTarea.setFechaInicio(document.getString("FechaInicio"));

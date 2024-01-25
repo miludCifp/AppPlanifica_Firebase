@@ -37,11 +37,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         holder.bindData(listItem.get(position));
         holder.miCardView.setCardBackgroundColor(Color.WHITE);
 
-        /*DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fInicio = LocalDate.parse(fechInicio,formatoFecha);
-        LocalDate fFin = LocalDate.parse(fechFin,formatoFecha);
-        long diasPlazo = ChronoUnit.DAYS.between(fInicio, fFin);*/
-
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fFin = LocalDate.parse(fechFin,formatoFecha);
         long diasPlazo = ChronoUnit.DAYS.between(LocalDate.now(), fFin);
@@ -90,7 +85,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void limpiar(){
+    /*public void limpiar(){
         notifyDataSetChanged();
-    }
+    }*/
 }

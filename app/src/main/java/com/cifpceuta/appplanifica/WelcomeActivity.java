@@ -73,7 +73,8 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
             getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragTareas).commit();
         } else if (itemId == R.id.tareas_semana) {
             // Cargar aqui el fragmento de las tareas por semana
-
+            Fragment_Tareas_Semana n = new Fragment_Tareas_Semana(user);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst,n).commit();
         } else if (itemId == R.id.plan_exam) {
 
         } else if (itemId == R.id.nav_settings) {

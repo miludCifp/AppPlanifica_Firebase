@@ -13,17 +13,6 @@
         android:theme="@style/Theme.AppPlanifica"
         tools:targetApi="31">
         <activity
-            android:name=".WelcomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegistrarCuenta"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"/>
-        <activity
-            android:name=".InicioSesion"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"/>
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -32,6 +21,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Splash_AppPlanifica"
+            android:exported="true" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarCuenta"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".InicioSesion"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

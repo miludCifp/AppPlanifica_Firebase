@@ -135,7 +135,7 @@ public class RegistrarCuenta extends AppCompatActivity {
     }
     private void guardarDatosUser(){
         //Recogo el id del usuario
-        String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();;
+        String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         Map<String, Object> user = new HashMap<>();
         user.put("Nombre", txtNombre.getText().toString());

@@ -24,6 +24,10 @@
         android:title="Planificar examen" />
 
     <item
+        android:id="@+id/actividad_extra"
+        android:title="Consultar Activ. Extra" />
+
+    <item
         android:id="@+id/nav_settings"
         android:title="Preferencias" />
 

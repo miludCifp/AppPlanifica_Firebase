@@ -24,30 +24,14 @@ public class AdapterActExtra extends RecyclerView.Adapter<AdapterActExtra.ViewHo
     @NonNull
     @Override
     public AdapterActExtra.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View miView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tarea_layout,parent,false);
+        View miView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_act_extra,parent,false);
         return new AdapterActExtra.ViewHolder(miView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        /*holder.bindData(listItem.get(position));
-        holder.miCardViewExtra.setCardBackgroundColor(Color.WHITE);
+        holder.bindData(listItem.get(position));
 
-        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fFin = LocalDate.parse(fechFin,formatoFecha);
-        long diasPlazo = ChronoUnit.DAYS.between(LocalDate.now(), fFin);
-
-        if (diasPlazo <= 3 && diasPlazo >= 0) {
-            holder.miCardViewExtra.setCardBackgroundColor(ContextCompat.getColor(holder.miCardViewExtra.getContext(), R.color.verdeClaro));
-        } else if (diasPlazo > 3) {
-            holder.miCardViewExtra.setCardBackgroundColor(ContextCompat.getColor(holder.miCardViewExtra.getContext(), R.color.rojoClaro));
-        } else {
-            holder.miCardViewExtra.setCardBackgroundColor(ContextCompat.getColor(holder.miCardViewExtra.getContext(), R.color.azulClaro));
-        }*/
-
-        //holder.bindData(listItem.get(position));
-        //holder.miCardViewExtra.setCardBackgroundColor(Color.WHITE);
-        //holder.miCardViewExtra.setCardBackgroundColor(ContextCompat.getColor(holder.miCardViewExtra.getContext(), R.color.azulClaro));
     }
 
     public AdapterActExtra(ArrayList<ActExtra> listaTareas) {
@@ -74,6 +58,12 @@ public class AdapterActExtra extends RecyclerView.Adapter<AdapterActExtra.ViewHo
             //miCardViewExtra.setCardBackgroundColor(ContextCompat.getColor(miCardViewExtra.getContext(), R.color.azulClaro));
         }
         void bindData(ActExtra actExtra) {
+            if(!listItem.isEmpty()){
+                titulo.setText(actExtra.getTitulo());
+                grupo.setText(actExtra.getGrupo());
+                fecha.setText(actExtra.getFecha());
+            }
+
 
         }
     }

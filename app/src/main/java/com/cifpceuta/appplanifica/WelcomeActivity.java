@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +33,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
     private FirebaseFirestore bd;
     private Alumno user;
     private ArrayList<Tarea> tareas;
+    private ArrayList<ActExtra> listaActExtra;
     private HashMap<String,ArrayList<String>> listaModulos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,8 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
 
         recogerModulos();
 
+        //recogerActExtra();
+
 
     }
     @Override
@@ -76,9 +81,10 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
             Fragment_Tareas_Semana n = new Fragment_Tareas_Semana(user);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst,n).commit();
         } else if (itemId == R.id.actividad_extra) {
-            // Cargar aqui el fragmento de las actividades extraescolares
-            Fragment_ActividadExtra FragActExtra = new Fragment_ActividadExtra(user);
+            // Cargar aqui el fragmento de las actividades extraescolares, pasandole una lista con las Actividades Extra obtenidas de la BD.
+            Fragment_ActividadExtra FragActExtra = new Fragment_ActividadExtra(user, listaActExtra);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst,FragActExtra).commit();
+
         } else if (itemId == R.id.plan_exam) {
 
         } else if (itemId == R.id.nav_settings) {
@@ -109,6 +115,10 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                         //creamos el fragmento por defecto y cargamos el correo logueado.
                         Fragment_PorDefecto fragDefecto = Fragment_PorDefecto.newInstance(user.getEmail());
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst, fragDefecto).commit();
+
+                        // recogo  las tareas extras
+                        recogerActExtra();
+
 
                         Toast.makeText(WelcomeActivity.this,"Nombre: "+user.getNombre()+"\n Tu email es : "+user.getEmail(),Toast.LENGTH_LONG).show();
                     } else {
@@ -151,5 +161,41 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                 }
             }
         });
+    }
+
+    /**
+     * mediante este metodo obtengo de la bd los datos de la Actividad Extra
+     */
+    private void recogerActExtra() {
+        //String idProfesor = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        bd = FirebaseFirestore.getInstance();
+
+        bd.collection("actextra")
+                .whereEqualTo("Grupo", user.getGrupo())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            //Inicializo el array que guardara las tareas asignadas.
+                            listaActExtra = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                ActExtra unaActExtra = new ActExtra();
+
+                                unaActExtra.setTitulo(document.getString("Titulo"));
+                                unaActExtra.setFecha(document.getString("Fecha_ini"));
+                                unaActExtra.setGrupo(document.getString("Grupo"));
+
+                                listaActExtra.add(unaActExtra);
+                            }
+
+                            //Toast.makeText(this.getActivity(), "Actividades Extra consultadas correctamente", Toast.LENGTH_SHORT).show();
+                        } else {
+                            //Toast.makeText(getContext(), "Error, no se pudo leer las tareas "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }

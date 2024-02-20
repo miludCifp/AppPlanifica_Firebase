@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
     android:layout_height="280dp"
-    android:background="@color/azulClaro"
+    android:background="@color/verdeClaro"
     android:padding="20dp">
 
 
@@ -53,21 +53,22 @@
         android:id="@+id/etFechaActExtra"
         android:layout_width="146dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
         android:background="@color/white"
         android:hint="01/02/2024"
         android:padding="10dp"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.781"
         app:layout_constraintStart_toEndOf="@+id/spGrupoDialogo"
-        tools:layout_editor_absoluteY="107dp"
         tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/spGrupoDialogo"
         android:layout_width="100dp"
-        android:layout_height="34dp"
+        android:layout_height="40dp"
         android:layout_marginTop="24dp"
         android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,8 +78,9 @@
         android:id="@+id/btnDialogAñadir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         android:text="Añadir"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etFechaActExtra" />

@@ -59,13 +59,16 @@ public class Fragment_ActividadExtra extends Fragment {
     private ArrayList<ActExtra> listaActExtra;
     private Alumno user;
     private RecyclerView miRecyclerView;
+    private AdapterActExtra miItemAdapterExtra;
 
     public Fragment_ActividadExtra() {
         // Required empty public constructor
     }
-    public Fragment_ActividadExtra(Alumno alumno) {
+    public Fragment_ActividadExtra(Alumno alumno, ArrayList<ActExtra> listaActExtra) {
         // Required empty public constructor
         this.user = alumno;
+        this.listaActExtra = listaActExtra;
+
     }
 
     /**
@@ -93,6 +96,7 @@ public class Fragment_ActividadExtra extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -102,6 +106,13 @@ public class Fragment_ActividadExtra extends Fragment {
         View miView =  inflater.inflate(R.layout.fragment__actividad_extra, container, false);
         // Doy accion al icono fab
         iconoFabAñadir(miView);
+
+        // Creamos aqui el Reycler View
+        miItemAdapterExtra = new AdapterActExtra(listaActExtra);
+
+        miRecyclerView = (RecyclerView) miView.findViewById(R.id.recyclerActExtra);
+        miRecyclerView.setAdapter(miItemAdapterExtra);
+        miRecyclerView.setLayoutManager(new LinearLayoutManager(miView.getContext()));
 
         return miView;
     }
@@ -140,14 +151,6 @@ public class Fragment_ActividadExtra extends Fragment {
 
                 gruposDialogo.setAdapter(spGruposAdapter);
 
-                //damos accion al boton
-                btnDialogAñadir.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //Intent i = new Intent(RegistrarCuenta.this, MainActivity.class);
-                        //startActivity(i);
-                    }
-                });
 
                 //Establecemos el listener para capturar datos y realizar acción de añadir
                 btnDialogAñadir.setOnClickListener(new View.OnClickListener() {
@@ -160,11 +163,14 @@ public class Fragment_ActividadExtra extends Fragment {
                         // Se guarda la informacion en la bd
                         guardarDatos(tituloActExtra, fechaDialogo, grupoSeleccionado);
 
+                        if(grupoSeleccionado.equalsIgnoreCase(user.getGrupo())){
+                            listaActExtra.add(new ActExtra(tituloActExtra,fechaDialogo,grupoSeleccionado));
+                            miItemAdapterExtra.setList_item(listaActExtra);
+                        }
+
                         //Esta llamada cierra el dialogo
                         dialog.dismiss();
 
-                        //Aqui se añadira la tarea al fragment llamando al recogerActExtra
-                        recogerActExtra(miView);
                     }
                 });
 
@@ -199,6 +205,7 @@ public class Fragment_ActividadExtra extends Fragment {
                     }
                 });
     }
+    /*
     private void recogerActExtra(View miView) {
         //String idProfesor = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
@@ -216,6 +223,7 @@ public class Fragment_ActividadExtra extends Fragment {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 ActExtra unaActExtra = new ActExtra();
+
                                 unaActExtra.setTitulo(document.getString("Titulo"));
                                 unaActExtra.setFecha(document.getString("Fecha_ini"));
                                 unaActExtra.setGrupo(document.getString("Grupo"));
@@ -233,5 +241,7 @@ public class Fragment_ActividadExtra extends Fragment {
                     }
                 });
     }
+    */
+
 
 }

@@ -34,6 +34,7 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
     private Alumno user;
     private ArrayList<Tarea> tareas;
     private ArrayList<ActExtra> listaActExtra;
+    private ArrayList<Alumno> listaAlumnosGest;
     private HashMap<String,ArrayList<String>> listaModulos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +59,6 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
 
         recogerModulos();
 
-        //recogerActExtra();
-
-
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -84,7 +82,10 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
             // Cargar aqui el fragmento de las actividades extraescolares, pasandole una lista con las Actividades Extra obtenidas de la BD.
             Fragment_ActividadExtra FragActExtra = new Fragment_ActividadExtra(user, listaActExtra);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst,FragActExtra).commit();
-
+        } else if (itemId == R.id.gestion_alumnos) {
+            // Cargar aqui el fragmento
+            Frag_Gestion_Alumnos FragGestAlumnos = new Frag_Gestion_Alumnos(user, listaAlumnosGest);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragPerfilEst,FragGestAlumnos).commit();
         } else if (itemId == R.id.plan_exam) {
 
         } else if (itemId == R.id.nav_settings) {
@@ -118,6 +119,9 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
 
                         // recogo  las tareas extras
                         recogerActExtra();
+
+                        // Recogo los datos Gestion Alumnos
+                        recogerInfoAlumnos();
 
 
                         Toast.makeText(WelcomeActivity.this,"Nombre: "+user.getNombre()+"\n Tu email es : "+user.getEmail(),Toast.LENGTH_LONG).show();
@@ -198,4 +202,44 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                     }
                 });
     }
+
+
+    /**
+     * Este metodo obtiene la informacion del alumno desde la BD, por el Grupo al que pertenece cada alumno
+     */
+    private void recogerInfoAlumnos() {
+        //String idProfesor = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        bd = FirebaseFirestore.getInstance();
+
+        bd.collection("usuarios")
+                .whereEqualTo("Grupo", user.getGrupo())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            //Inicializo el array que guardara las tareas asignadas.
+                            listaAlumnosGest = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Alumno infoAlumno = new Alumno();
+
+                                infoAlumno.setNombre(document.getString("Nombre"));
+                                infoAlumno.setEmail(document.getString("Correo"));
+                                //infoAlumno.setGrupo(document.getString("Grupo"));
+
+
+                                // Esta lista se llena con la info del alumno
+                                listaAlumnosGest.add(infoAlumno);
+                            }
+
+                            //Toast.makeText(this.getActivity(), "Actividades Extra consultadas correctamente", Toast.LENGTH_SHORT).show();
+                        } else {
+                            //Toast.makeText(getContext(), "Error, no se pudo leer las tareas "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 }

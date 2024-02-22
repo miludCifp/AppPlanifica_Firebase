@@ -28,6 +28,10 @@
         android:title="Consultar Activ. Extra" />
 
     <item
+        android:id="@+id/gestion_alumnos"
+        android:title="Gestion Alumnos" />
+
+    <item
         android:id="@+id/nav_settings"
         android:title="Preferencias" />
 

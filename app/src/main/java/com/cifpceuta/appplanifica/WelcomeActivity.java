@@ -229,7 +229,6 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                                 infoAlumno.setEmail(document.getString("Correo"));
                                 //infoAlumno.setGrupo(document.getString("Grupo"));
 
-
                                 // Esta lista se llena con la info del alumno
                                 listaAlumnosGest.add(infoAlumno);
                             }
@@ -240,6 +239,37 @@ public class WelcomeActivity extends AppCompatActivity implements NavigationView
                         }
                     }
                 });
+
+                //--------------
+        /*
+        DocumentReference docRef = bd.collection("usuarios").document("usuarios");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    //Inicializo el array que guardara las tareas asignadas.
+                    listaAlumnosGest = new ArrayList<>();
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Alumno infoAlumno = new Alumno();
+
+                        infoAlumno.setNombre(document.getString("Nombre"));
+                        infoAlumno.setEmail(document.getString("Correo"));
+                        //infoAlumno.setGrupo(document.getString("Grupo"));
+
+                        // Esta lista se llena con la info del alumno
+                        listaAlumnosGest.add(infoAlumno);
+                    }
+
+                    //Toast.makeText(this.getActivity(), "Actividades Extra consultadas correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Toast.makeText(getContext(), "Error, no se pudo leer las tareas "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+         */
     }
 
 }

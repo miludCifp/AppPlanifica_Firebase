@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -118,22 +119,35 @@ public class Frag_Gestion_Alumnos extends Fragment {
         miRecyclerView.setLayoutManager(new LinearLayoutManager(miView.getContext()));
 
         // Actualizo el Reycler View,
-        /*
-        spGestAlumnos.setOnClickListener(new View.OnClickListener() {
+
+
+        spGestAlumnos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                if(grupoSeleccionado.equalsIgnoreCase(user.getGrupo())){
-                    miAdapterGestAlumnos.setList_item(listaAlumnos);
-                    //miAdapterGestAlumnos.setList_item(listaAlumnos.removeAll());
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                ArrayList<Alumno> userTMP = new ArrayList<>();
 
+                String grupoSeleccionado = spGestAlumnos.getSelectedItem().toString();
+                String grupoUser = user.getGrupo();
+
+                for (Alumno user : listaAlumnos){
+                    if(grupoSeleccionado.equalsIgnoreCase(grupoUser)){
+                        userTMP.add(user);
+                    }
+
+                    //userTMP.add(user);
                 }
-            }
-        });
-        */
-        if(grupoSeleccionado.equalsIgnoreCase(user.getGrupo())){
-            miAdapterGestAlumnos.setList_item(listaAlumnos);
-            //miAdapterGestAlumnos.setList_item(listaAlumnos.removeAll());
+                miAdapterGestAlumnos.setList_item(userTMP);
 
-        }
+                //------------------------------
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+
     }
 }
